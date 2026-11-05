@@ -1,4 +1,8 @@
-﻿using NUnit.Framework;  // can't alias
+﻿// SPDX-FileCopyrightText: 2023 aas-package3-csharp AUTHORS
+//
+// SPDX-License-Identifier: MIT
+
+using NUnit.Framework;  // can't alias
 using ArgumentException = System.ArgumentException;
 using InvalidOperationException = System.InvalidOperationException;
 

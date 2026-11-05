@@ -1,4 +1,8 @@
-﻿using ArgumentException = System.ArgumentException;
+﻿// SPDX-FileCopyrightText: 2023 aas-package3-csharp AUTHORS
+//
+// SPDX-License-Identifier: MIT
+
+using ArgumentException = System.ArgumentException;
 using InvalidOperationException = System.InvalidOperationException;
 
 namespace AasCore.Aas3.Package

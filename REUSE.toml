@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2023 aas-package3-csharp AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
+version = 1
+
+# Prose and metadata where a header would end up in the rendered output
+# (e.g., README shown on GitHub and NuGet, the documentation), or which can
+# not carry a comment (JSON, images).
+[[annotations]]
+path = [
+    "AUTHORS",
+    "README.md",
+    "doc/**/*.md",
+    "doc/docfx.json",
+    "doc/images/**",
+    "src/.config/dotnet-tools.json",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023 aas-package3-csharp AUTHORS"
+SPDX-License-Identifier = "MIT"
+
+# IDE settings and the solution files are written by Rider, ReSharper and
+# Visual Studio, which would drop or misplace a header on the next save.
+[[annotations]]
+path = [
+    "src/.idea/**",
+    "src/CheckScript/.idea/**",
+    "src/aas-package3-csharp.sln",
+    "src/aas-package3-csharp.sln.DotSettings",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023 aas-package3-csharp AUTHORS"
+SPDX-License-Identifier = "MIT"
+
+# A plain word list, one entry per line, so a header would be read as words.
+[[annotations]]
+path = "src/AdditionalVerbsInImperativeMood.txt"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023 aas-package3-csharp AUTHORS"
+SPDX-License-Identifier = "MIT"
+
+# Test resources: the recorded outputs (spec and supplementary tables,
+# thumbnails, AAS environments) of reading the sample AASX packages from
+# admin-shell-io.com. They are recorded outputs meant for byte-by-byte
+# comparison, so they must not carry a header.
+[[annotations]]
+path = "src/AasCore.Aas3.Package.Tests/TestResources/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023 aas-package3-csharp AUTHORS"
+SPDX-License-Identifier = "MIT"

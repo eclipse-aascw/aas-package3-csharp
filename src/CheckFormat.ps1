@@ -1,4 +1,9 @@
 #!/usr/bin/env pwsh
+
+# SPDX-FileCopyrightText: 2023 aas-package3-csharp AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 <#
 .SYNOPSIS
 This script checks the format of the code.

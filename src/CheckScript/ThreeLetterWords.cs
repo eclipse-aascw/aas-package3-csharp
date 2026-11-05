@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;  // can't alias
+﻿// SPDX-FileCopyrightText: 2023 aas-package3-csharp AUTHORS
+//
+// SPDX-License-Identifier: MIT
+
+using System.Collections.Generic;  // can't alias
 
 namespace CheckScript
 {
