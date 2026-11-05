@@ -39,13 +39,3 @@ path = "src/AdditionalVerbsInImperativeMood.txt"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2023 aas-package3-csharp AUTHORS"
 SPDX-License-Identifier = "MIT"
-
-# Test resources: the recorded outputs (spec and supplementary tables,
-# thumbnails, AAS environments) of reading the sample AASX packages from
-# admin-shell-io.com. They are recorded outputs meant for byte-by-byte
-# comparison, so they must not carry a header.
-[[annotations]]
-path = "src/AasCore.Aas3.Package.Tests/TestResources/**"
-precedence = "aggregate"
-SPDX-FileCopyrightText = "2023 aas-package3-csharp AUTHORS"
-SPDX-License-Identifier = "MIT"
