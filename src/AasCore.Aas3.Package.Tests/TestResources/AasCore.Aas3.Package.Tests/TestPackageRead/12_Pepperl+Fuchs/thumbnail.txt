@@ -1,1 +1,0 @@
-URI: /MAC0007059_rgb.jpg, first bytes: 255, 216, 255, 224
