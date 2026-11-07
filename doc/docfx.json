@@ -38,13 +38,6 @@
         ]
       }
     ],
-    "resource": [
-      {
-        "files": [
-          "images/**"
-        ]
-      }
-    ],
     "overwrite": [
       {
         "files": [
@@ -64,9 +57,7 @@
     ],
     "postProcessors": [],
     "globalMetadata": {
-      "_enableSearch": "true",
-      "_appLogoPath": "images/adminshellio-48x48.jpg",
-      "_appFaviconPath": "images/favicon.ico"
+      "_enableSearch": "true"
     },
     "markdownEngineName": "markdig",
     "noLangKeyword": false,
