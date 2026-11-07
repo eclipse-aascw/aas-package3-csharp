@@ -322,56 +322,6 @@
       "version": ""
     },
     {
-      "type": "Resource",
-      "source_relative_path": "images/adminshellio-48x48.jpg",
-      "output": {
-        "resource": {
-          "relative_path": "images/adminshellio-48x48.jpg"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/favicon-16x16.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/favicon-16x16.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/favicon-32x32.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/favicon-32x32.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/favicon-96x96.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/favicon-96x96.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/favicon.ico",
-      "output": {
-        "resource": {
-          "relative_path": "images/favicon.ico"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
