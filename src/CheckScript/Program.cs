@@ -1,4 +1,8 @@
-﻿using Console = System.Console;
+﻿// SPDX-FileCopyrightText: 2023 aas-package3-csharp AUTHORS
+//
+// SPDX-License-Identifier: MIT
+
+using Console = System.Console;
 using DateTime = System.DateTime;
 using Environment = System.Environment;
 using Path = System.IO.Path;
