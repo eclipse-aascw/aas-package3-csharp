@@ -6,14 +6,13 @@ version = 1
 
 # Prose and metadata where a header would end up in the rendered output
 # (e.g., README shown on GitHub and NuGet, the documentation), or which can
-# not carry a comment (JSON, images).
+# not carry a comment (JSON).
 [[annotations]]
 path = [
     "AUTHORS",
     "README.md",
     "doc/**/*.md",
     "doc/docfx.json",
-    "doc/images/**",
     "src/.config/dotnet-tools.json",
 ]
 precedence = "aggregate"
