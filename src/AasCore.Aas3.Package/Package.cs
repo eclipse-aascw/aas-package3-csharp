@@ -18,6 +18,8 @@ using InvalidDataException = System.IO.InvalidDataException;
 using InvalidOperationException = System.InvalidOperationException;
 using MemoryStream = System.IO.MemoryStream;
 using PackagePart = System.IO.Packaging.PackagePart;
+using PackageRelationship = System.IO.Packaging.PackageRelationship;
+using PackUriHelper = System.IO.Packaging.PackUriHelper;
 using Stream = System.IO.Stream;
 using StringComparison = System.StringComparison;
 using SystemPackage = System.IO.Packaging.Package; // renamed
@@ -212,6 +214,42 @@ namespace AasCore.Aas3.Package
         }
 
         /**
+         * <summary>
+         * Resolve the target of the <paramref name="relationship"/> to an absolute
+         * part URI.
+         * </summary>
+         * <remarks>
+         * The target of a relationship can be a relative reference, which needs to be
+         * resolved against the URI of the source part (or the package root for
+         * package-level relationships), see ISO/IEC 29500-2 and IDTA-01005.
+         * <see cref="PackageRelationship.TargetUri"/> gives the target as-is, so
+         * we need to resolve it before looking up the part.
+         *
+         * External targets are returned unchanged.
+         * </remarks>
+         */
+        internal static Uri ResolveTarget(PackageRelationship relationship)
+        {
+            return relationship.TargetMode == TargetMode.External
+                ? relationship.TargetUri
+                : PackUriHelper.ResolvePartUri(
+                    relationship.SourceUri, relationship.TargetUri);
+        }
+
+        /**
+         * <summary>
+         * Check whether the <paramref name="relationship"/> targets the part
+         * at <paramref name="partUri"/>.
+         * </summary>
+         */
+        internal static bool TargetsPart(PackageRelationship relationship, Uri partUri)
+        {
+            return relationship.TargetMode == TargetMode.Internal
+                   && PackUriHelper.ComparePartUri(
+                       ResolveTarget(relationship), partUri) == 0;
+        }
+
+        /**
          * <summary>Create the AAS package at the given <paramref name="path"/>.</summary>
          */
         public PackageReadWrite Create(string path)
@@ -288,7 +326,7 @@ namespace AasCore.Aas3.Package
             return (
                 from x in xs
                 where x.SourceUri.ToString() == "/"
-                select package.GetPart(x.TargetUri)
+                select package.GetPart(ResolveTarget(x))
             ).FirstOrDefault();
         }
 
@@ -734,7 +772,7 @@ namespace AasCore.Aas3.Package
 
             foreach (var x in xs)
             {
-                var specUri = x.TargetUri;
+                var specUri = Packaging.ResolveTarget(x);
                 var specPart = UnderlyingPackage.GetPart(specUri);
                 yield return new Part(specUri, specPart);
             }
@@ -800,7 +838,7 @@ namespace AasCore.Aas3.Package
             return OriginPart
                 .GetRelationshipsByType(Packaging.RelationType.AasxSpec)
                 .Concat(OriginPart.GetRelationshipsByType(Packaging.RelationTypeDeprecated.AasxSpec))
-                .Any(rel => rel.TargetUri == part.Uri);
+                .Any(rel => Packaging.TargetsPart(rel, part.Uri));
         }
 
         /**
@@ -820,7 +858,7 @@ namespace AasCore.Aas3.Package
 
             foreach (var x in xs)
             {
-                var supplUri = x.TargetUri;
+                var supplUri = Packaging.ResolveTarget(x);
 
                 if (!UnderlyingPackage.PartExists(supplUri))
                 {
@@ -912,14 +950,16 @@ namespace AasCore.Aas3.Package
             {
                 if (x.SourceUri.ToString() == "/")
                 {
-                    if (!UnderlyingPackage.PartExists(x.TargetUri))
+                    var thumbnailUri = Packaging.ResolveTarget(x);
+
+                    if (!UnderlyingPackage.PartExists(thumbnailUri))
                     {
                         throw new InvalidDataException(
                             "The thumbnail relation from the origin exists, " +
-                            $"but the target part does not: {x.TargetUri}");
+                            $"but the target part does not: {thumbnailUri}");
                     }
                     result = new Part(
-                        x.TargetUri, UnderlyingPackage.GetPart(x.TargetUri));
+                        thumbnailUri, UnderlyingPackage.GetPart(thumbnailUri));
                     break;
                 }
             }
@@ -1125,7 +1165,7 @@ namespace AasCore.Aas3.Package
             var rels = OriginPart
                 .GetRelationshipsByType(Packaging.RelationType.AasxSpec)
                 .Concat(OriginPart.GetRelationshipsByType(Packaging.RelationTypeDeprecated.AasxSpec))
-                .Where(aRel => aRel.TargetUri == part.Uri);
+                .Where(aRel => Packaging.TargetsPart(aRel, part.Uri));
 
             foreach (var rel in rels)
             {
@@ -1195,7 +1235,7 @@ namespace AasCore.Aas3.Package
                 .Concat(spec.PackagePart.GetRelationshipsByType(Packaging.RelationTypeDeprecated.AasxSupplementary));
 
 
-            if (rels.All(rel => rel.TargetUri != supplementary.Uri))
+            if (!rels.Any(rel => Packaging.TargetsPart(rel, supplementary.Uri)))
             {
                 spec.PackagePart.CreateRelationship(
                     supplementary.Uri,
@@ -1267,7 +1307,7 @@ namespace AasCore.Aas3.Package
                 .PackagePart
                 .GetRelationshipsByType(Packaging.RelationType.AasxSupplementary)
                 .Concat(spec.PackagePart.GetRelationshipsByType(Packaging.RelationTypeDeprecated.AasxSupplementary))
-                .Where(aRel => aRel.TargetUri == supplementary.Uri);
+                .Where(aRel => Packaging.TargetsPart(aRel, supplementary.Uri));
 
             foreach (var rel in rels)
             {
