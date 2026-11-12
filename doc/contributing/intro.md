@@ -14,11 +14,11 @@ This is a brief list of steps explaining how to submit your code contribution.
 
 ### Create a feature branch
 
-**If you are a member of [aas-core-works GitHub organization]**:
+**If you are a member of [eclipse-aascw GitHub organization]**:
  
 * Clone the Git repository:
   ```
-  git clone https://github.com/aas-core-works/aas-package3-csharp
+  git clone https://github.com/eclipse-aascw/aas-package3-csharp
   ```
   
 * Create your feature branch:
@@ -118,7 +118,7 @@ This is a brief list of steps explaining how to submit your code contribution.
   
 ### Merge
 
-**If you are a member of [aas-core-works GitHub organization]**:
+**If you are a member of [eclipse-aascw GitHub organization]**:
  
 * Squash & Merge (see 
   [this section of the GitHub documentation on squash & merge])  
@@ -128,11 +128,11 @@ This is a brief list of steps explaining how to submit your code contribution.
 * Ask somebody from the organization to squash & merge the pull request for you 
 
 [Visual Studio 2019 Community Edition]: https://visualstudio.microsoft.com/de/vs/community/
-[aas-core-works GitHub organization]: https://github.com/aas-core-works
+[eclipse-aascw GitHub organization]: https://github.com/eclipse-aascw
 [our guideline to naming the branches]: https://aas-core-works.github.io/aas-package3-cshapr9-dotnet5/devdoc/getting-started/development-workflow.html#pull-requests
 [this GitHub guide about forking]: https://guides.github.com/activities/forking/
 [guideline related to commit messages]: https://aas-core-works.github.io/aas-package3-cshapr9-dotnet5/devdoc/getting-started/development-workflow.html#commit-messages
 [.NET 3.1 SDK]: https://dotnet.microsoft.com/download/dotnet/3.1
 [.NET 5 SDK]: https://dotnet.microsoft.com/download/dotnet/5.0
-[aas-package3-csharp GitHub Repository]: https://github.com/aas-core-works/aas-package3-csharp
+[aas-package3-csharp GitHub Repository]: https://github.com/eclipse-aascw/aas-package3-csharp
 [this section of the GitHub documentation on squash & merge]: https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/merging-a-pull-request

@@ -19,12 +19,12 @@ SPDX-License-Identifier: MIT
         <Description>
             A library for reading and writing packaged file format of an Asset Administration Shell (AAS) v3
         </Description>
-        <RepositoryUrl>https://github.com/aas-core-works/aas-package3-csharp.git</RepositoryUrl>
+        <RepositoryUrl>https://github.com/eclipse-aascw/aas-package3-csharp.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright (c) 2024 Marko Ristin, Nico Braunisch</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageProjectUrl>https://github.com/aas-core-works/aas-package3-csharp</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/eclipse-aascw/aas-package3-csharp</PackageProjectUrl>
         <PackageTags>aas;asset administration shell;iiot;industry internet of things;industrie 4.0;i4.0</PackageTags>
     </PropertyGroup>
 

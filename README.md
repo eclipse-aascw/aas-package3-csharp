@@ -1,9 +1,8 @@
 # aas-package3-csharp
 
-[![Test](https://github.com/aas-core-works/aas-package3-csharp/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/aas-core-works/aas-package3-csharp/actions/workflows/test.yml
-) [![Check style](https://github.com/aas-core-works/aas-package3-csharp/actions/workflows/check-style.yml/badge.svg)](https://github.com/aas-core-works/aas-package3-csharp/actions/workflows/check-style.yml
-) [![Check Doc](https://github.com/aas-core-works/aas-package3-csharp/actions/workflows/check-doc.yml/badge.svg)](https://github.com/aas-core-works/aas-package3-csharp/actions/workflows/check-doc.yml
-) [![Coverage Status](https://coveralls.io/repos/github/aas-core-works/aas-package3-csharp/badge.svg?branch=main)](https://coveralls.io/github/aas-core-works/aas-package3-csharp?branch=main
+[![Test](https://github.com/eclipse-aascw/aas-package3-csharp/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/eclipse-aascw/aas-package3-csharp/actions/workflows/test.yml
+) [![Check style](https://github.com/eclipse-aascw/aas-package3-csharp/actions/workflows/check-style.yml/badge.svg)](https://github.com/eclipse-aascw/aas-package3-csharp/actions/workflows/check-style.yml
+) [![Check Doc](https://github.com/eclipse-aascw/aas-package3-csharp/actions/workflows/check-doc.yml/badge.svg)](https://github.com/eclipse-aascw/aas-package3-csharp/actions/workflows/check-doc.yml
 ) [![Nuget](
 https://img.shields.io/nuget/v/AasCore.Aas3.Package)](
 https://www.nuget.org/packages/AasCore.Aas3.Package
@@ -21,7 +20,7 @@ NET Standard 2.0, NET Standard 2.1, NET 8 and 9 are supported.
 
 ## Documentation
 
-The documentation is available at https://aas-core-works.github.io/aas-package3-csharp/doc.
+The documentation is available at https://eclipse-aascw.github.io/aas-package3-csharp/doc.
 
 ### Teaser
 
@@ -114,7 +113,7 @@ byte[] supplementaryContent;
 }
 ```
 
-Please see the full documentation at [https://aas-core-works.github.io/aas-package3-csharp/doc] for more details.
+Please see the full documentation at [https://eclipse-aascw.github.io/aas-package3-csharp/doc] for more details.
 
 ## Installation
 
