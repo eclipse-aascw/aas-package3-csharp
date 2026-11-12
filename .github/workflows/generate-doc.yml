@@ -13,10 +13,10 @@ jobs:
   Generate-doc:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
 
       - name: Install .NET 9
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '9.0.x'
 
@@ -30,7 +30,7 @@ jobs:
         run: .\GenerateDoc.ps1
 
       - name: Deploy to gh-pages 🚀
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: artefacts/gh-pages
