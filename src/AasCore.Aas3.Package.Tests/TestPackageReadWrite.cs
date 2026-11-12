@@ -121,7 +121,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(pth);
                 var pkg = pkgOrErr.Must();
-                Assert.IsNotNull(pkg.Thumbnail());
+                Assert.That(pkg.Thumbnail(), Is.Not.Null);
                 var gotContent = pkg.Thumbnail()!.ReadAllBytes();
                 Assert.That(gotContent, Is.EqualTo(originalContent));
             }
@@ -148,7 +148,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(stream);
                 var pkg = pkgOrErr.Must();
-                Assert.IsNotNull(pkg.Thumbnail());
+                Assert.That(pkg.Thumbnail(), Is.Not.Null);
                 var gotContent = pkg.Thumbnail()!.ReadAllBytes();
                 Assert.That(gotContent, Is.EqualTo(originalContent));
             }
@@ -195,8 +195,8 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenReadWrite(pth);
 
-                Assert.IsNotNull(pkgOrErr.MaybeException);
-                Assert.IsInstanceOf<FileFormatException>(pkgOrErr.MaybeException);
+                Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+                Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<FileFormatException>());
             }
         }
 
@@ -217,8 +217,8 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenReadWrite(pth);
 
-                Assert.IsNotNull(pkgOrErr.MaybeException);
-                Assert.IsInstanceOf<InvalidDataException>(pkgOrErr.MaybeException);
+                Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+                Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<InvalidDataException>());
             }
         }
 
@@ -238,8 +238,8 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenReadWrite(stream);
 
-                Assert.IsNotNull(pkgOrErr.MaybeException);
-                Assert.IsInstanceOf<InvalidDataException>(pkgOrErr.MaybeException);
+                Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+                Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<InvalidDataException>());
             }
         }
 
@@ -252,8 +252,8 @@ namespace AasCore.Aas3.Package.Tests
 
             using var pkgOrErr = packaging.OpenReadWrite(stream);
 
-            Assert.IsNotNull(pkgOrErr.MaybeException);
-            Assert.IsInstanceOf<FileFormatException>(pkgOrErr.MaybeException);
+            Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+            Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<FileFormatException>());
         }
     }
 
@@ -297,7 +297,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(stream);
                 var pkg = pkgOrErr.Must();
-                Assert.IsNotNull(pkg.Thumbnail());
+                Assert.That(pkg.Thumbnail(), Is.Not.Null);
                 var gotContent = pkg.Thumbnail()!.ReadAllBytes();
                 Assert.That(gotContent, Is.EqualTo(newContent));
             }
@@ -341,9 +341,9 @@ namespace AasCore.Aas3.Package.Tests
                 using var pkgOrErr = packaging.OpenRead(pth);
                 var pkg = pkgOrErr.Must();
                 var content = pkg.Specs().First().ReadAllBytes();
-                Assert.AreEqual(
-                    Encoding.UTF8.GetString(newContent),
-                    Encoding.UTF8.GetString(content));
+                Assert.That(
+                    Encoding.UTF8.GetString(content),
+                    Is.EqualTo(Encoding.UTF8.GetString(newContent)));
             }
         }
 
@@ -392,9 +392,9 @@ namespace AasCore.Aas3.Package.Tests
                     throw new AssertionException("Unexpected null content");
                 }
 
-                Assert.AreEqual(
-                    Encoding.UTF8.GetString(newContent),
-                    Encoding.UTF8.GetString(content));
+                Assert.That(
+                    Encoding.UTF8.GetString(content),
+                    Is.EqualTo(Encoding.UTF8.GetString(newContent)));
             }
         }
 
@@ -446,7 +446,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(pth);
                 var pkg = pkgOrErr.Must();
-                Assert.IsNotNull(pkg.Thumbnail());
+                Assert.That(pkg.Thumbnail(), Is.Not.Null);
                 var gotContent = pkg.Thumbnail()!.ReadAllBytes();
                 Assert.That(gotContent, Is.EqualTo(newContent));
             }
@@ -493,7 +493,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(pth);
                 var pkg = pkgOrErr.Must();
-                Assert.IsNotNull(pkg.Thumbnail());
+                Assert.That(pkg.Thumbnail(), Is.Not.Null);
                 var gotContent = pkg.Thumbnail()!.ReadAllBytes();
                 Assert.That(gotContent, Is.EqualTo(newContent));
 
@@ -543,7 +543,7 @@ namespace AasCore.Aas3.Package.Tests
 
                     pkg.RemovePart(pkg.UnmakeSpec(part));
 
-                    Assert.IsNull(pkg.FindPart(uri));
+                    Assert.That(pkg.FindPart(uri), Is.Null);
                     ((System.IDisposable)pkgOrErr).Dispose();
                 }
             }
@@ -601,7 +601,7 @@ namespace AasCore.Aas3.Package.Tests
                     pkg.UnrelateSupplementaryFromSpec(suppl, spec);
                     pkg.RemovePart(suppl);
 
-                    Assert.IsNull(pkg.FindPart(uri));
+                    Assert.That(pkg.FindPart(uri), Is.Null);
                 }
             }
 
@@ -639,7 +639,7 @@ namespace AasCore.Aas3.Package.Tests
                     pkg.UnmakeThumbnail();
                     pkg.RemovePart(thumbnail);
 
-                    Assert.IsNull(pkg.FindPart(uri));
+                    Assert.That(pkg.FindPart(uri), Is.Null);
                 }
             }
         }
@@ -683,9 +683,9 @@ namespace AasCore.Aas3.Package.Tests
                 using var pkgOrErr = packaging.OpenRead(pth);
                 var pkgRead = pkgOrErr.Must();
                 var spec = pkgRead.Specs().FirstOrDefault();
-                Assert.IsNotNull(spec, "Legacy spec should be found");
-                Assert.AreEqual(specUri, spec!.Uri);
-                Assert.IsTrue(pkgRead.IsSpec(spec), "IsSpec should return true for legacy URIs");
+                Assert.That(spec, Is.Not.Null, "Legacy spec should be found");
+                Assert.That(spec!.Uri, Is.EqualTo(specUri));
+                Assert.That(pkgRead.IsSpec(spec), Is.True, "IsSpec should return true for legacy URIs");
             }
 
             // 2. Verify we can unmake it (delete legacy relationship)
@@ -697,7 +697,7 @@ namespace AasCore.Aas3.Package.Tests
                 pkgWrite.UnmakeSpec(spec);
                 pkgWrite.Flush();
 
-                Assert.IsFalse(pkgWrite.Specs().Any(), "Legacy relationship should have been deleted");
+                Assert.That(pkgWrite.Specs().Any(), Is.False, "Legacy relationship should have been deleted");
             }
         }
 
@@ -737,8 +737,8 @@ namespace AasCore.Aas3.Package.Tests
                 var spec = pkgRead.Specs().First();
                 var suppl = pkgRead.SupplementariesFor(spec).FirstOrDefault();
 
-                Assert.IsNotNull(suppl, "Legacy supplementary should be found");
-                Assert.AreEqual(supplUri, suppl!.Uri);
+                Assert.That(suppl, Is.Not.Null, "Legacy supplementary should be found");
+                Assert.That(suppl!.Uri, Is.EqualTo(supplUri));
             }
 
             // 2. Verify Unrelate works for legacy URIs
@@ -751,7 +751,7 @@ namespace AasCore.Aas3.Package.Tests
                 pkgReadWrite.UnrelateSupplementaryFromSpec(suppl, spec);
                 pkgReadWrite.Flush();
 
-                Assert.IsFalse(pkgReadWrite.SupplementariesFor(spec).Any(), "Legacy supplementary relationship should be gone");
+                Assert.That(pkgReadWrite.SupplementariesFor(spec).Any(), Is.False, "Legacy supplementary relationship should be gone");
             }
         }
 
@@ -799,7 +799,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 var specPart = pkg.GetPart(specUri);
                 var rels = specPart.GetRelationships();
-                Assert.AreEqual(1, rels.Count(), "Should not create a modern relationship if a legacy one exists for the same target");
+                Assert.That(rels.Count(), Is.EqualTo(1), "Should not create a modern relationship if a legacy one exists for the same target");
             }
         }
 
@@ -842,7 +842,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 var pkgRead = pkgOrErr.Must();
                 var spec = pkgRead.Specs().First();
-                Assert.AreEqual(1, pkgRead.SupplementariesFor(spec).Count(), "Should find modern supplementary related to legacy spec");
+                Assert.That(pkgRead.SupplementariesFor(spec).Count(), Is.EqualTo(1), "Should find modern supplementary related to legacy spec");
             }
         }
     }

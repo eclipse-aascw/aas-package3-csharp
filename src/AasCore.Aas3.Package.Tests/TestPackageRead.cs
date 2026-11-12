@@ -87,14 +87,14 @@ namespace AasCore.Aas3.Package.Tests
                     // The case with XML is trivial.
                     if (contentType != "text/json") continue;
 
-                    Assert.AreEqual(2, specs.Count);
-                    Assert.AreEqual(
-                        "/aasx/some-company/data.json",
-                        specs[0].Uri.ToString());
+                    Assert.That(specs.Count, Is.EqualTo(2));
+                    Assert.That(
+                        specs[0].Uri.ToString(),
+                        Is.EqualTo("/aasx/some-company/data.json"));
 
-                    Assert.AreEqual(
-                        "/aasx/some-company/data1.json",
-                        specs[1].Uri.ToString());
+                    Assert.That(
+                        specs[1].Uri.ToString(),
+                        Is.EqualTo("/aasx/some-company/data1.json"));
                 }
             }
         }
@@ -114,8 +114,8 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(pth);
 
-                Assert.IsNotNull(pkgOrErr.MaybeException);
-                Assert.IsInstanceOf<FileFormatException>(pkgOrErr.MaybeException);
+                Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+                Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<FileFormatException>());
             }
         }
 
@@ -136,8 +136,8 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(pth);
 
-                Assert.IsNotNull(pkgOrErr.MaybeException);
-                Assert.IsInstanceOf<InvalidDataException>(pkgOrErr.MaybeException);
+                Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+                Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<InvalidDataException>());
             }
         }
 
@@ -157,8 +157,8 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(stream);
 
-                Assert.IsNotNull(pkgOrErr.MaybeException);
-                Assert.IsInstanceOf<InvalidDataException>(pkgOrErr.MaybeException);
+                Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+                Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<InvalidDataException>());
             }
         }
 
@@ -171,8 +171,8 @@ namespace AasCore.Aas3.Package.Tests
 
             using var pkgOrErr = packaging.OpenRead(stream);
 
-            Assert.IsNotNull(pkgOrErr.MaybeException);
-            Assert.IsInstanceOf<FileFormatException>(pkgOrErr.MaybeException);
+            Assert.That(pkgOrErr.MaybeException, Is.Not.Null);
+            Assert.That(pkgOrErr.MaybeException, Is.InstanceOf<FileFormatException>());
         }
 
         [Test]
@@ -191,7 +191,7 @@ namespace AasCore.Aas3.Package.Tests
             {
                 using var pkgOrErr = packaging.OpenRead(pth);
                 var pkg = pkgOrErr.Must();
-                Assert.IsNull(pkg.Thumbnail());
+                Assert.That(pkg.Thumbnail(), Is.Null);
             }
         }
 
