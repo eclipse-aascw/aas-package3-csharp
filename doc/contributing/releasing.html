@@ -83,25 +83,23 @@
 <p>We follow <a href="http://semver.org/spec/v1.0.0.html">Semantic Versioning</a>.
 The version X.Y.Z indicates:</p>
 <ul>
-<li>X is the major version (backward-incompatible w.r.t. command-line arguments),</li>
-<li>Y is the minor version (backward-compatible), and</li>
-<li>Z is the patch version (backward-compatible bug fix).</li>
+<li>X is the major version (backward-incompatible changes to the API, the supported target frameworks or the major version of a runtime dependency),</li>
+<li>Y is the minor version (backward-compatible new features), and</li>
+<li>Z is the patch version (backward-compatible bug fixes).</li>
 </ul>
-<h2 id="build-solution-for-release">Build Solution for Release</h2>
-<p>To build the solution for release and publish it, invoke:</p>
-<pre><code class="lang-powershell">.\src\Release.ps1
+<h2 id="release-to-nuget">Release to NuGet</h2>
+<p>To release a new version, publish a <a href="https://github.com/eclipse-aascw/aas-package3-csharp/releases/new">GitHub release</a> on <code>main</code> with the tag <code>vX.Y.Z</code> (<em>e.g.</em>, <code>v2.0.0</code>).</p>
+<p>Publishing the release triggers the workflow <code>publish-to-nuget.yml</code> in <a href="https://github.com/eclipse-aascw/aas-package3-csharp/tree/main/.github/workflows"><code>.github/workflows</code></a>.
+The workflow takes the package version from the tag, builds the package and pushes it to NuGet using <a href="https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing">trusted publishing</a>, so no API key is needed.
+The <code>&lt;Version&gt;</code> in <code>AasCore.Aas3.Package.csproj</code> is only used for local builds.</p>
+<h2 id="building-the-package-locally">Building the Package Locally</h2>
+<p>To build the package locally, invoke:</p>
+<pre><code class="lang-powershell">dotnet pack -c Release -o artefacts src/AasCore.Aas3.Package
 </code></pre>
-<p>If you want to clean a previous release, call:</p>
-<pre><code class="lang-powershell">.\src\Release.ps1 -clean
-</code></pre>
-<p>This will build and publish the solution in <code>artefacts/</code> directory.</p>
-<p>In cases of substantial changes to the solution, you need to delete <code>bin</code> and <code>obj</code> subdirectories beneath <code>src</code> as dotnet  will not do that for you.
+<p>In cases of substantial changes to the solution, you need to delete <code>bin</code> and <code>obj</code> subdirectories beneath <code>src</code> as dotnet will not do that for you.
 We provide a shallow script to save you a couple of keystrokes:</p>
 <pre><code class="lang-powershell">.\src\RemoveBinAndObj.ps1
 </code></pre>
-<h1 id="release-to-nuget">Release to NuGet</h1>
-<p>There is a dedicated GitHub workflow for publishing the package to NuGet.
-Please see the <code>publish-to-nuget.yml</code> in <a href="https://github.com/eclipse-aascw/aas-package3-csharp/tree/main/.github/workflows"><code>.github/workflows</code></a>.</p>
 
 </article>
           </div>
