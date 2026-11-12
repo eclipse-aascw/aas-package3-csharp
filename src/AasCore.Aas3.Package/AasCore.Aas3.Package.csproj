@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net10.0;net462;netstandard2.1;netstandard2.0</TargetFrameworks>
         <Nullable>enable</Nullable>
         <Configurations>Debug;Release;DebugSlow</Configurations>
         <Platforms>AnyCPU</Platforms>

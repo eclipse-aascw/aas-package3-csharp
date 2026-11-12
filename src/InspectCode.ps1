@@ -28,8 +28,13 @@ function Main
 
     # InspectCode passes over the properties to MSBuild,
     # see https://www.jetbrains.com/help/resharper/InspectCode.html#msbuild-related-parameters
+    #
+    # We inspect only the net10.0 build. The code is the same for all target
+    # frameworks, but the net462 build of System.IO.Packaging has no nullable
+    # annotations, which results in false positives about possible null
+    # references.
     & dotnet jb inspectcode `
-        "--properties:Configuration=DebugSlow" `
+        "--properties:Configuration=DebugSlow;TargetFramework=net10.0" `
         "-o=$codeInspectionPath" `
         "--caches-home=$cachesHome" `
         '--exclude=*\obj\*;packages\*;*\bin\*;*\*.json;*\TestResources\*' `

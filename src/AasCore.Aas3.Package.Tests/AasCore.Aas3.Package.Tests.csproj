@@ -16,7 +16,7 @@ SPDX-License-Identifier: MIT
 
         <Nullable>enable</Nullable>
 
-        <TargetFramework>net10.0</TargetFramework>
+        <TargetFrameworks>net10.0;net462</TargetFrameworks>
 
         <OutputType>Library</OutputType>
 
