@@ -2,7 +2,7 @@
 
 We provide PowerShell scripts to help you install the dependencies and build the solution from the command line.
 
-We assume that both dotnet SDK 8.0 and 9.0 are installed.
+We assume that the .NET 10 SDK is installed.
 
 The following script installs all the dependencies in one go:
 
