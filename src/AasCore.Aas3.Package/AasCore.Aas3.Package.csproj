@@ -7,14 +7,14 @@ SPDX-License-Identifier: MIT
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
         <Nullable>enable</Nullable>
         <Configurations>Debug;Release;DebugSlow</Configurations>
         <Platforms>AnyCPU</Platforms>
         <LangVersion>8</LangVersion>
 
         <PackageId>AasCore.Aas3.Package</PackageId>
-        <Version>1.0.4</Version>
+        <Version>2.0.0</Version>
         <Authors>Marko Ristin, Nico Braunisch</Authors>
         <Description>
             A library for reading and writing packaged file format of an Asset Administration Shell (AAS) v3
@@ -29,7 +29,7 @@ SPDX-License-Identifier: MIT
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.IO.Packaging" version="9.*" />
+      <PackageReference Include="System.IO.Packaging" Version="10.0.15" />
     </ItemGroup>
 
     <ItemGroup>
