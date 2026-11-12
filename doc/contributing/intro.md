@@ -46,12 +46,12 @@ This is a brief list of steps explaining how to submit your code contribution.
 
 ### Dependencies
 
-* We assume that you installed both [.NET 3.1 SDK] and [.NET 5 SDK] on your system.
+* We assume that you installed the [.NET 10 SDK] on your system.
 
 * Change to the directory of your repository. Execute the following command to install all the development dependencies:
 
   ```
-  .\src\InstallSolutionDependencies.ps1
+  .\src\InstallDependencies.ps1
   ```
 
 ### Write Your Code
@@ -129,7 +129,6 @@ This is a brief list of steps explaining how to submit your code contribution.
 [Visual Studio 2019 Community Edition]: https://visualstudio.microsoft.com/de/vs/community/
 [eclipse-aascw GitHub organization]: https://github.com/eclipse-aascw
 [this GitHub guide about forking]: https://guides.github.com/activities/forking/
-[.NET 3.1 SDK]: https://dotnet.microsoft.com/download/dotnet/3.1
-[.NET 5 SDK]: https://dotnet.microsoft.com/download/dotnet/5.0
+[.NET 10 SDK]: https://dotnet.microsoft.com/download/dotnet/10.0
 [aas-package3-csharp GitHub Repository]: https://github.com/eclipse-aascw/aas-package3-csharp
 [this section of the GitHub documentation on squash & merge]: https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/merging-a-pull-request
