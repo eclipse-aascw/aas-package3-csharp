@@ -27,8 +27,7 @@ This is a brief list of steps explaining how to submit your code contribution.
   git checkout -b yourUsername/Add-some-new-feature
   ``` 
   
-  Please observe [our guideline to naming the branches] 
-  (`{your-username}/{Describe-subject-of-the-commit}`).
+  Please name your branch `{your-username}/{Describe-subject-of-the-commit}`.
 
 **Otherwise**:
 
@@ -80,7 +79,7 @@ This is a brief list of steps explaining how to submit your code contribution.
   git commit
   ```
 
-  Please observe our [guideline related to commit messages]:
+  Please follow these rules for commit messages:
   1) First line is a subject, max. 50 characters, starts with a verb in imperative mood
   2) Empty line
   3) Body, max. line width 72 characters, must not start with the first word of the subject
@@ -129,9 +128,7 @@ This is a brief list of steps explaining how to submit your code contribution.
 
 [Visual Studio 2019 Community Edition]: https://visualstudio.microsoft.com/de/vs/community/
 [eclipse-aascw GitHub organization]: https://github.com/eclipse-aascw
-[our guideline to naming the branches]: https://aas-core-works.github.io/aas-package3-cshapr9-dotnet5/devdoc/getting-started/development-workflow.html#pull-requests
 [this GitHub guide about forking]: https://guides.github.com/activities/forking/
-[guideline related to commit messages]: https://aas-core-works.github.io/aas-package3-cshapr9-dotnet5/devdoc/getting-started/development-workflow.html#commit-messages
 [.NET 3.1 SDK]: https://dotnet.microsoft.com/download/dotnet/3.1
 [.NET 5 SDK]: https://dotnet.microsoft.com/download/dotnet/5.0
 [aas-package3-csharp GitHub Repository]: https://github.com/eclipse-aascw/aas-package3-csharp
