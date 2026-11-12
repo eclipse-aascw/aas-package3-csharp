@@ -286,9 +286,20 @@ namespace AasCore.Aas3.Package
          * <summary>
          * Create the AAS package in the given <paramref name="stream"/>.
          * </summary>
+         * <exception cref="System.ArgumentException">
+         * If the <paramref name="stream"/> is not readable and writable.
+         * </exception>
          */
         public PackageReadWrite Create(Stream stream)
         {
+            // We check the stream ourselves, as System.IO.Packaging throws
+            // different exceptions for a read-only stream depending on the target
+            // framework (an ArgumentException on .NET, an IOException on
+            // .NET Framework).
+            Dbc.Require(
+                stream is { CanRead: true, CanWrite: true },
+                "The stream needs to be readable and writable to create a package.");
+
             // These objects are to be disposed if the create operation fails.
             // Otherwise, their ownership should be transferred to the resulting object.
             // This list also includes the opened package.

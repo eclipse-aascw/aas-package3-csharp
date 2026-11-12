@@ -209,7 +209,7 @@ namespace AasCore.Aas3.Package.Tests
                 // Create an empty Open Package Convention package, *i.e.* an invalid
                 // AAS package
                 using var pkgOpc = SystemPackage.Open(
-                    pth, FileMode.Create, FileAccess.Write);
+                    pth, FileMode.Create, FileAccess.ReadWrite);
             }
 
             Packaging packaging = new Packaging();
@@ -230,7 +230,7 @@ namespace AasCore.Aas3.Package.Tests
                 // Create an empty Open Package Convention package, *i.e.* an invalid
                 // AAS package
                 using var pkgOpc = SystemPackage.Open(
-                    stream, FileMode.Create, FileAccess.Write);
+                    stream, FileMode.Create, FileAccess.ReadWrite);
             }
 
             Packaging packaging = new Packaging();
