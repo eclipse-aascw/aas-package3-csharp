@@ -9,13 +9,13 @@
       ]
     },
     "jetbrains.resharper.globaltools": {
-      "version": "2025.1.2",
+      "version": "2026.3.0",
       "commands": [
         "jb"
       ]
     },
     "docfx": {
-      "version": "2.78.4",
+      "version": "2.81.0",
       "commands": [
         "docfx"
       ]

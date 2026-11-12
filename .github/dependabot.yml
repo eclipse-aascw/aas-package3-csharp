@@ -17,6 +17,13 @@ updates:
     directory: "/src"
     schedule:
       interval: "weekly"
+    ignore:
+      # System.IO.Packaging is a runtime dependency of the published package.
+      # Its major versions follow .NET and drop older target frameworks, so
+      # raising it forces all consumers onto it. We bump it deliberately
+      # together with the target frameworks of the library instead.
+      - dependency-name: "System.IO.Packaging"
+        update-types: ["version-update:semver-major"]
     groups:
       nuget:
         patterns:

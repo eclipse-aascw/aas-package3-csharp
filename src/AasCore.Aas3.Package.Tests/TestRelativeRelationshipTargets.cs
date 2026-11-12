@@ -104,27 +104,28 @@ namespace AasCore.Aas3.Package.Tests
             var pkg = pkgOrErr.Must();
 
             var specs = pkg.Specs().ToList();
-            Assert.AreEqual(1, specs.Count);
-            Assert.AreEqual("/aasx/xml/content.xml", specs[0].Uri.ToString());
-            Assert.AreEqual("<environment />", specs[0].ReadAllText());
-            Assert.IsTrue(pkg.IsSpec(specs[0]));
+            Assert.That(specs.Count, Is.EqualTo(1));
+            Assert.That(specs[0].Uri.ToString(), Is.EqualTo("/aasx/xml/content.xml"));
+            Assert.That(specs[0].ReadAllText(), Is.EqualTo("<environment />"));
+            Assert.That(pkg.IsSpec(specs[0]), Is.True);
 
             var suppls = pkg.SupplementariesFor(specs[0]).ToList();
-            Assert.AreEqual(1, suppls.Count);
-            Assert.AreEqual(
-                "/aasx/documentation/abc/manual_pdf", suppls[0].Uri.ToString());
-            Assert.AreEqual("some manual", suppls[0].ReadAllText());
+            Assert.That(suppls.Count, Is.EqualTo(1));
+            Assert.That(
+                suppls[0].Uri.ToString(),
+                Is.EqualTo("/aasx/documentation/abc/manual_pdf"));
+            Assert.That(suppls[0].ReadAllText(), Is.EqualTo("some manual"));
 
             var supplRels = pkg.SupplementaryRelationships().ToList();
-            Assert.AreEqual(1, supplRels.Count);
-            Assert.AreEqual(
-                "/aasx/documentation/abc/manual_pdf",
-                supplRels[0].Supplementary.Uri.ToString());
+            Assert.That(supplRels.Count, Is.EqualTo(1));
+            Assert.That(
+                supplRels[0].Supplementary.Uri.ToString(),
+                Is.EqualTo("/aasx/documentation/abc/manual_pdf"));
 
             var thumbnail = pkg.Thumbnail();
-            Assert.IsNotNull(thumbnail);
-            Assert.AreEqual("/No_image.png", thumbnail!.Uri.ToString());
-            Assert.AreEqual("some image", thumbnail.ReadAllText());
+            Assert.That(thumbnail, Is.Not.Null);
+            Assert.That(thumbnail!.Uri.ToString(), Is.EqualTo("/No_image.png"));
+            Assert.That(thumbnail.ReadAllText(), Is.EqualTo("some image"));
         }
 
         [Test]
@@ -145,14 +146,14 @@ namespace AasCore.Aas3.Package.Tests
                 // The relationship already exists with a relative target,
                 // so no duplicate must be created.
                 pkg.RelateSupplementaryToSpec(suppl, spec);
-                Assert.AreEqual(1, pkg.SupplementariesFor(spec).Count());
+                Assert.That(pkg.SupplementariesFor(spec).Count(), Is.EqualTo(1));
 
                 pkg.UnrelateSupplementaryFromSpec(suppl, spec);
-                Assert.AreEqual(0, pkg.SupplementariesFor(spec).Count());
+                Assert.That(pkg.SupplementariesFor(spec).Count(), Is.EqualTo(0));
 
                 pkg.UnmakeSpec(spec);
-                Assert.AreEqual(0, pkg.Specs().Count());
-                Assert.IsFalse(pkg.IsSpec(spec));
+                Assert.That(pkg.Specs().Count(), Is.EqualTo(0));
+                Assert.That(pkg.IsSpec(spec), Is.False);
 
                 pkg.Flush();
             }
@@ -162,8 +163,8 @@ namespace AasCore.Aas3.Package.Tests
                 using var pkgOrErr = packaging.OpenRead(stream);
                 var pkg = pkgOrErr.Must();
 
-                Assert.AreEqual(0, pkg.Specs().Count());
-                Assert.AreEqual(0, pkg.SupplementaryRelationships().Count());
+                Assert.That(pkg.Specs().Count(), Is.EqualTo(0));
+                Assert.That(pkg.SupplementaryRelationships().Count(), Is.EqualTo(0));
             }
         }
     }

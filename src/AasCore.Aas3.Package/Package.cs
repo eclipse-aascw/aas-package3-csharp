@@ -21,6 +21,7 @@ using PackagePart = System.IO.Packaging.PackagePart;
 using PackageRelationship = System.IO.Packaging.PackageRelationship;
 using PackUriHelper = System.IO.Packaging.PackUriHelper;
 using Stream = System.IO.Stream;
+using StringComparer = System.StringComparer;
 using StringComparison = System.StringComparison;
 using SystemPackage = System.IO.Packaging.Package; // renamed
 using TargetMode = System.IO.Packaging.TargetMode;
@@ -783,7 +784,8 @@ namespace AasCore.Aas3.Package
          */
         public IDictionary<string, List<Part>> SpecsByContentType()
         {
-            var result = new SortedDictionary<string, List<Part>>();
+            var result = new SortedDictionary<string, List<Part>>(
+                StringComparer.CurrentCulture);
             foreach (var spec in Specs())
             {
                 if (!result.ContainsKey(spec.ContentType))
