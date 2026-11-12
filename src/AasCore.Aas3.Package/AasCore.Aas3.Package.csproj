@@ -29,7 +29,7 @@ SPDX-License-Identifier: MIT
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.IO.Packaging" version="9.*" />
+      <PackageReference Include="System.IO.Packaging" version="11.*" />
     </ItemGroup>
 
     <ItemGroup>
