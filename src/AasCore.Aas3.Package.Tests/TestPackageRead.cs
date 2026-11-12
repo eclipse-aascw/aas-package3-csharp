@@ -30,6 +30,8 @@ namespace AasCore.Aas3.Package.Tests
 
             using var pkgOrErr = packaging.OpenRead(stream);
 
+            // Assert.Catch invokes the delegate immediately, before the disposal.
+            // ReSharper disable once AccessToDisposedClosure
             Assert.Catch<FileFormatException>(() => { pkgOrErr.Must(); });
         }
 
