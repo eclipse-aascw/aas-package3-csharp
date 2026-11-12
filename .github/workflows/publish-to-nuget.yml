@@ -5,31 +5,52 @@
 name: Publish to NuGet
 
 on:
-  push:
-    tags:
-      - 'v*'
-    branches:
-      - '*/Fix-nuget-publishing'
+  release:
+    types: [published]
 
 jobs:
   build:
     runs-on: windows-latest
     name: Update NuGet package
+    permissions:
+      contents: read
+      # Required to request the GitHub OIDC token for NuGet trusted publishing
+      id-token: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install .NET 9
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
 
+      - name: Determine package version from release tag
+        id: version
+        shell: pwsh
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          $version = $env:TAG_NAME -replace '^v', ''
+          if ($version -notmatch '^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$') {
+            Write-Error "Release tag '$env:TAG_NAME' is not a valid version (expected e.g. v1.2.3)."
+            exit 1
+          }
+          Write-Host "Package version: $version"
+          "version=$version" >> $env:GITHUB_OUTPUT
+
       - name: Build solution and generate NuGet package
         working-directory: src/AasCore.Aas3.Package
-        run: dotnet pack -c Release -o out
+        run: dotnet pack -c Release -o out -p:Version=${{ steps.version.outputs.version }}
+
+      - name: Log in to NuGet (trusted publishing)
+        id: login
+        uses: NuGet/login@v1
+        with:
+          user: mristin
 
       - name: Push generated package
         working-directory: src/AasCore.Aas3.Package
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push out\*.nupkg --skip-duplicate --no-symbols --source https://api.nuget.org/v3/index.json -k $env:NUGET_AUTH_TOKEN
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: dotnet nuget push out\*.nupkg --skip-duplicate --no-symbols --source https://api.nuget.org/v3/index.json -k $env:NUGET_API_KEY
